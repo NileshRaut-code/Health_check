@@ -102,11 +102,6 @@ def predict_cancer():
         return render_template('c_result.html', prediction=my_prediction)
 
 
-def ValuePredictor(to_predict_list, size):
-    loaded_model = joblib.load('models/heart_model')
-    to_predict = np.array(to_predict_list).reshape(1, size)
-    result = loaded_model.predict(to_predict)
-    return result[0]
 
 
 @app.route('/heart')
@@ -123,7 +118,10 @@ def predict_heart():
             to_predict_list = list(to_predict_list.values())
             to_predict_list = list(map(float, to_predict_list))
             result = ValuePredictor(to_predict_list, 11)
-
+            size=11
+            loaded_model = joblib.load('models/heart_model')
+            to_predict = np.array(to_predict_list).reshape(1, size)
+            result = loaded_model.predict(to_predict)
             if(int(result) == 1):
                 prediction = 1
             else:
