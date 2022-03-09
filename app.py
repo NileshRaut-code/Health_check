@@ -119,7 +119,7 @@ def predict_heart():
             to_predict_list = list(map(float, to_predict_list))
             result = ValuePredictor(to_predict_list, 11)
             size=11
-            loaded_model = joblib.load('models/heart_model')
+            loaded_model = joblib.load('Models/heart_model')
             to_predict = np.array(to_predict_list).reshape(1, size)
             result = loaded_model.predict(to_predict)
             if(int(result) == 1):
