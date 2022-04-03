@@ -21,7 +21,11 @@ rf = pickle.load(open(filename1, 'rb'))
 @app.route('/')
 def home():
     return render_template('index.html')
-
+@app.route("/sitemap/")
+@app.route("/sitemap")
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    return render_template("sitemap (5).xml")
 
 @app.route('/about')
 def about():
